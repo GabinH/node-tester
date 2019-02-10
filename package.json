@@ -1,0 +1,17 @@
+{
+    "name": "node-tester",
+    "version": "0.0.1",
+    "main": "dist/index.js",
+    "dependencies": {
+        "express": "^4.16.4"
+    },
+    "scripts": {
+        "dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/index.js\""
+    },
+    "devDependencies": {
+        "@types/node": "^10.12.24",
+        "concurrently": "^4.1.0",
+        "nodemon": "^1.18.10",
+        "typescript": "^3.3.3"
+    }
+}

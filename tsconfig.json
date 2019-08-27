@@ -3,7 +3,9 @@
         "outDir": "dist",
         "target": "es6",
         "module": "commonjs",
-        "strict": true
+        "strict": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true
     },
     "include": ["server/**/*"]
 }

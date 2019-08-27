@@ -6,7 +6,7 @@
         "express": "^4.16.4"
     },
     "scripts": {
-        "dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/index.js\""
+        "start": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon dist/index.js\""
     },
     "devDependencies": {
         "@types/express": "^4.16.1",

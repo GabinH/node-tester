@@ -44,6 +44,6 @@ https.createServer(httpsOptions, app).listen(PORT, function() {
     console.log(`Server running at https://${HOSTNAME}:${PORT}/`);
 });
 
-// app.listen(3000, function() {
-//     console.log("Example app listening on port 3000!");
+// app.listen(PORT, function() {
+//     console.log(`Server running at https://${HOSTNAME}:${PORT}/`);
 // });

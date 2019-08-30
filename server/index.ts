@@ -2,21 +2,48 @@ import Express from "express";
 import fs from "fs";
 import https from "https";
 import path from "path";
+import AWS from "aws-sdk";
 
-const app: Express.Application = Express();
+AWS.config.update({
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_PRIVATE_KEY
+});
+const s3 = new AWS.S3();
+
+const app = Express();
 
 const HOSTNAME = "localhost";
-const PORT = 3005;
+const PORT = 3001;
 
 const httpsOptions = {
-    cert: fs.readFileSync(path.join(__dirname, "ssl", "server.crt")),
-    key: fs.readFileSync(path.join(__dirname, "ssl", "server.key"))
+    cert: fs.readFileSync(
+        path.join(__dirname, "../server/secret", "server.crt")
+    ),
+    key: fs.readFileSync(
+        path.join(__dirname, "../server/secret", "server.key")
+    ),
+    passphrase: "test"
 };
 
 app.get("/", function(req, res) {
-    res.send("Hello World!");
+    console.log("calling server");
+    s3.getObject({ Bucket: "react-native-testeur", Key: "beta.png" }, function(
+        error,
+        data
+    ) {
+        if (error != null) {
+            alert("Failed to retrieve an object: " + error);
+        } else {
+            console.log(data);
+            res.send(data);
+        }
+    });
 });
 
 https.createServer(httpsOptions, app).listen(PORT, function() {
     console.log(`Server running at https://${HOSTNAME}:${PORT}/`);
 });
+
+// app.listen(3000, function() {
+//     console.log("Example app listening on port 3000!");
+// });

@@ -4,6 +4,6 @@ import { getImage } from "../controller";
 
 const router = Express.Router();
 
-router.get("/file", getImage);
+router.get("/file/:name", getImage);
 
 export { router };

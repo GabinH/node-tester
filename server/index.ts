@@ -1,17 +1,20 @@
-import Express from "express";
+import express from "express";
 
 import https from "https";
 
 import { httpsOptions } from "./config";
 import { router } from "./router";
 
-const app = Express();
+require("dotenv").config();
 
-const localhost = "localhost";
-const port = 3001;
+const app = express();
 
 app.use("/", router);
 
-https.createServer(httpsOptions, app).listen(port, function() {
-    console.log(`Server running at https://${localhost}:${port}/`);
+app.use(express.static("assets"));
+
+https.createServer(httpsOptions, app).listen(process.env.PORT, function() {
+    console.log(
+        `Server running at https://${process.env.HOST}:${process.env.PORT}/`
+    );
 });
